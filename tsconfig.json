@@ -18,10 +18,10 @@
     ],
     "paths": {
       "processpuzzle-doc": [
-        "dist/processpuzzle-doc"
+        "dist/processpuzzle-doc-lib"
       ],
       "processpuzzle-doc/*": [
-        "dist/processpuzzle-doc/*"
+        "dist/processpuzzle-doc-lib/*"
       ]
     }
   }
