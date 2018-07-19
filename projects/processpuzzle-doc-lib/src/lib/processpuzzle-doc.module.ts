@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { ProcesspuzzleDocComponent } from './processpuzzle-doc.component';
 
 @NgModule({
-  imports: [
-  ],
+  imports: [],
   declarations: [ProcesspuzzleDocComponent],
   exports: [ProcesspuzzleDocComponent]
 })
