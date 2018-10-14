@@ -11,7 +11,7 @@ before_script:
 script:
 - npm run ci
 before_deploy:
-- cd dist/processpuzzle-util-lib
+- cd dist/processpuzzle-doc-lib
 deploy:
   provider: npm
   email: zsolt.zsuffa@gmail.com
