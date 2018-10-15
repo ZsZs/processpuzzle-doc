@@ -8,6 +8,7 @@ branches:
 before_script:
 - npm install -g firebase-tools
 - npm install -g @angular/cli
+- npm install -g npm-cli-login
 script:
 - npm run ci
 before_deploy:
@@ -22,12 +23,12 @@ deploy:
       branch: master
       tags: false
   - provider: firebase
-      skip_cleanup: true
-      project: processpuzzle-doc
-      message: development build
-      on:
-        branch: master
-        tags: false
+    skip_cleanup: true
+    project: processpuzzle-doc
+    message: development build
+    on:
+      branch: master
+      tags: false
     token:
       secure: WrvexESBaR3h707GPeJ96xoHF/6gCc0SMCiMQQG4XxNtQ6k5jmak5IykLbpbEry8eR5HkFKBnRTmCrtvHCk41gWm6jv3pz89hqo08L8JQkqqaTlxI+U20LVTZztmgHXpsGVjOwO2/3Cs440h9PBHlWB6wIAikxn5MbZh4HWTYrxgVIGVKlGLUqdCehZuttc64VPN9BNDF25mEKsDnSTCCe0SZCZesuNYnWUpNEFf5fdQz7ljv2BS9vOmeFAxNgef7qAa9eqdbJX0vpYY8gpumQSnpEvPXNjuwgqRgM58axn4xm4f8Ya1ovrh+YL/FqUcuHKJilhchnrfcEN3FySexgVbEx/n3ZFFYUBvzQvmheCyNZsCCwpj6E5fxlgerFbX9fPV3fEvs0O4LhLyHnHhYKAVz2XyvvsIcpGUED0KEBIBZXd7wY1IfHu+HSO88CIJ/UtpDpsV1nxScDQ/k8ahtZ4k9oq/CE3HGGNGfcsXSbneCVi7GutXx4gqv5ohV43bBPRypMi/VNhYBA/SHI2hKyldXrnrTpEjueEUczpPr6bYHX+50wR7WYaNprPriRJVTb/8NV7sb8aFQk9p3ToF3nkGZetvRwoJNZ8tVAEx0WMxCC/WMNIX1FkpHxjSTIUcX2BNGXeNbvN1qtXi47mA+7DB5cw7OVeSluydjko/7gY=
 notifications:
