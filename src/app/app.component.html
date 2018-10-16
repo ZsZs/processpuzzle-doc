@@ -1,6 +1,10 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h3>
-    Welcome to {{ title }}!
-  </h3>
-</div>
+<nav>
+  <div class="nav-wrapper teal lighten-4">
+    <a routerLink='' class="brand-logo">ProcessPuzzle</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a routerLink='/smart-document'  routerLinkActive='active'>Smart Document</a></li>
+    </ul>
+  </div>
+</nav>
+<router-outlet></router-outlet>
