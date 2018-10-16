@@ -1,3 +1,6 @@
 cd dist/processpuzzle-doc-lib
-npm-cli-login
+    - cd dist/processpuzzle-doc-lib
+    - npm-cli-login
+    - npm publish
+
 npm publish

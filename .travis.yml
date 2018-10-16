@@ -8,25 +8,39 @@ branches:
 before_script:
 - npm install -g firebase-tools
 - npm install -g @angular/cli
-- npm install -g npm-cli-login
-script:
-- npm run ci
-deploy:
-  - provider: script
-    script: bash npm-deploy.sh
-    skip_cleanup: true
-    on:
-      branch: development
-      tags: false
-  - provider: firebase
-    skip_cleanup: true
-    project: processpuzzle-doc
-    message: development build
-    on:
-      branch: master
-      tags: false
-    token:
-      secure: WrvexESBaR3h707GPeJ96xoHF/6gCc0SMCiMQQG4XxNtQ6k5jmak5IykLbpbEry8eR5HkFKBnRTmCrtvHCk41gWm6jv3pz89hqo08L8JQkqqaTlxI+U20LVTZztmgHXpsGVjOwO2/3Cs440h9PBHlWB6wIAikxn5MbZh4HWTYrxgVIGVKlGLUqdCehZuttc64VPN9BNDF25mEKsDnSTCCe0SZCZesuNYnWUpNEFf5fdQz7ljv2BS9vOmeFAxNgef7qAa9eqdbJX0vpYY8gpumQSnpEvPXNjuwgqRgM58axn4xm4f8Ya1ovrh+YL/FqUcuHKJilhchnrfcEN3FySexgVbEx/n3ZFFYUBvzQvmheCyNZsCCwpj6E5fxlgerFbX9fPV3fEvs0O4LhLyHnHhYKAVz2XyvvsIcpGUED0KEBIBZXd7wY1IfHu+HSO88CIJ/UtpDpsV1nxScDQ/k8ahtZ4k9oq/CE3HGGNGfcsXSbneCVi7GutXx4gqv5ohV43bBPRypMi/VNhYBA/SHI2hKyldXrnrTpEjueEUczpPr6bYHX+50wR7WYaNprPriRJVTb/8NV7sb8aFQk9p3ToF3nkGZetvRwoJNZ8tVAEx0WMxCC/WMNIX1FkpHxjSTIUcX2BNGXeNbvN1qtXi47mA+7DB5cw7OVeSluydjko/7gY=
+
+jobs:
+  include:
+  - stage: "build & test"
+    script:
+    - npm run ci
+  - stage: "release to npm"
+    script:
+    - npm run build-prod
+    before_deploy:
+    - cd dist/processpuzzle-util-lib
+    deploy:
+      provider: npm
+        email: zsolt.zsuffa@gmail.com
+        skip_cleanup: true
+        api_key:
+          secure: h6Zvcc1GVjnml3kSlFmkrtYYOo7ZbML29y8QZZBJJ0RF3Vhc/QpiExA0SBrUf2lqx0c20OMHTzTThvTPCX7R6sc5TB/rCCPtrEYKonDjyS2RTjVgF2MJLYz5fZr9jeHSPB/rIZue3DA0q9zD6pnM3nYvvf1TgOujXJXWRqR/CkVFpzXr2U7Z1//eT+bRfEDXbAeuDHgrEdzdDgPm5lvuurdIkmwgSZg1Bevop59yxjxy8DOX40uJkJCPmbKvluyOtVwVB83Ksk3hALpIUS0Y/ynAo3ycXnrbKM1tKwgPPTCaYVVgL+Gm2kY7cJ5hVj7+J7dr+B3sCsoOyL1Q+uRgnioe7eJKaPEz+YCqNRewnYNxVuvs2nIzZsrguLH+YOQ4LcDcQdvE4yOFEKnmW/6d0iMK2PE7yUghpHMFq4N34s8z6K5XbnfWsNHjwBkPJQKTTqZtrTXk4hzdFgszVfaG1DHqYmG9WWCXDBzzMrn7T2SBE9LjMmJRpyNxCwIUkPqViJZLHn92FZsQ9Akt4fIvNv4Zq0WDUhrsM4JamWR4fsN4CmFRpsdgeBbXz1sT0tINTZ3EMujLyO6gtIjPlmoJOTgZhLiuQbVT64LLzeRiM9MyvfrIA+pzYTSDXpplwmkSaLlUM4JYWng0YSDKdSiMBa1Eu4di5g+BS3szS1p5f1Y=
+        on:
+          branch: development
+          tags: false
+  - stage: "release to firebase"
+    script:
+    - npm run build-prod
+    deploy:
+      provider: firebase
+      skip_cleanup: true
+      project: processpuzzle-doc
+      message: development build
+      on:
+        branch: development
+        tags: false
+      token:
+        secure: WrvexESBaR3h707GPeJ96xoHF/6gCc0SMCiMQQG4XxNtQ6k5jmak5IykLbpbEry8eR5HkFKBnRTmCrtvHCk41gWm6jv3pz89hqo08L8JQkqqaTlxI+U20LVTZztmgHXpsGVjOwO2/3Cs440h9PBHlWB6wIAikxn5MbZh4HWTYrxgVIGVKlGLUqdCehZuttc64VPN9BNDF25mEKsDnSTCCe0SZCZesuNYnWUpNEFf5fdQz7ljv2BS9vOmeFAxNgef7qAa9eqdbJX0vpYY8gpumQSnpEvPXNjuwgqRgM58axn4xm4f8Ya1ovrh+YL/FqUcuHKJilhchnrfcEN3FySexgVbEx/n3ZFFYUBvzQvmheCyNZsCCwpj6E5fxlgerFbX9fPV3fEvs0O4LhLyHnHhYKAVz2XyvvsIcpGUED0KEBIBZXd7wY1IfHu+HSO88CIJ/UtpDpsV1nxScDQ/k8ahtZ4k9oq/CE3HGGNGfcsXSbneCVi7GutXx4gqv5ohV43bBPRypMi/VNhYBA/SHI2hKyldXrnrTpEjueEUczpPr6bYHX+50wR7WYaNprPriRJVTb/8NV7sb8aFQk9p3ToF3nkGZetvRwoJNZ8tVAEx0WMxCC/WMNIX1FkpHxjSTIUcX2BNGXeNbvN1qtXi47mA+7DB5cw7OVeSluydjko/7gY=
 notifications:
   email:
     on_failure: change
