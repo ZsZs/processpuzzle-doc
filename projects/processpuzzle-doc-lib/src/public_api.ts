@@ -2,6 +2,6 @@
  * Public API Surface of processpuzzle-doc
  */
 
-export * from './lib/smart-document.service';
-export * from './lib/smart-document.component';
-export * from './lib/smart-document.module';
+export * from './lib/processpuzzle-doc-lib.service';
+export * from './lib/processpuzzle-doc-lib.component';
+export * from './lib/processpuzzle-doc-lib.module';

@@ -17,12 +17,10 @@
       "dom"
     ],
     "paths": {
-      "processpuzzle-doc": [
-        "dist/processpuzzle-doc-lib"
-      ],
-      "processpuzzle-doc/*": [
-        "dist/processpuzzle-doc-lib/*"
-      ]
+      "processpuzzle-doc": ["dist/processpuzzle-doc-lib"],
+      "processpuzzle-doc/*": ["dist/processpuzzle-doc-lib/*"],
+      "@app/*": ["src/app/*"],
+      "@env/*": ["src/environments/*"]
     }
   }
 }

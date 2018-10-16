@@ -153,7 +153,7 @@
       "root": "projects/processpuzzle-doc-lib",
       "sourceRoot": "projects/processpuzzle-doc-lib/src",
       "projectType": "library",
-      "prefix": "ppd",
+      "prefix": "doc",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -187,7 +187,7 @@
               ]
             }
           }
-
+          
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
