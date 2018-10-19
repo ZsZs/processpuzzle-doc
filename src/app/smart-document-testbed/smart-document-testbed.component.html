@@ -1,0 +1,9 @@
+<h5>Testbed for SmartDocument</h5>
+<p>Smart document is a container of various content types, like text, image, form, diagram, spreadsheet. Each of these type of contents hat it's own editor. Please click on the pencil icon to start editing the document.</p>
+<pp-smart-document #smart_document></pp-smart-document>
+<div class="fixed-action-btn horizontal">
+  <a class="btn-floating btn teal">
+    <i (click)="onEditContent()" class="large material-icons" *ngIf="!isEdited">mode_edit</i>
+    <i (click)="onCancelEdit()" class="large material-icons" *ngIf="isEdited">exit_to_app</i>
+  </a>
+</div>
