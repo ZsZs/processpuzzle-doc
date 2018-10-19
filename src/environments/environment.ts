@@ -9,8 +9,14 @@ export const environment = {
     host: 'localhost:8124',
     contextPath: 'server/api',
     resourcePath: 'contacts'
-  }
+  },
 
+  documentService: {
+    protocol: 'http:',
+    host: 'localhost:8124',
+    contextPath: 'server/api',
+    resourcePath: 'documents'
+  }
 };
 
 /*

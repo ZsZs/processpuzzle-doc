@@ -1,18 +1,25 @@
+// Angular
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+// Third party components
+import { MzIconModule, MzIconMdiModule } from 'ngx-materialize';
+
+// ProcessPuzzle components
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home.component';
 import { environment } from '../environments/environment';
+import { HomeComponent } from './home.component';
+import { ProcesspuzzleDocModule } from '../../projects/processpuzzle-doc-lib/src/lib/processpuzzle-doc-lib.module';
 import { ProcesspuzzleUtilLibModule } from 'processpuzzle-util';
 import { RemoteApiConfiguration } from 'processpuzzle-util';
 import { PageNotFoundComponent } from './page-not-found.component';
-import { SmartDocumentComponent } from './smart-document/smart-document.component';
+import { SmartDocumentTestbedComponent } from './smart-document-testbed/smart-document-testbed.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'smart-document', component: SmartDocumentComponent },
+  { path: 'smart-document-testbed', component: SmartDocumentTestbedComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -28,12 +35,16 @@ const apiConfiguration: RemoteApiConfiguration = {
     AppComponent,
     HomeComponent,
     PageNotFoundComponent,
-    SmartDocumentComponent
+    SmartDocumentTestbedComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
+    MzIconModule,
+    MzIconMdiModule,
+    ProcesspuzzleDocModule,
     ProcesspuzzleUtilLibModule.forRoot( apiConfiguration ),
-    RouterModule.forRoot( appRoutes, { enableTracing: true } )
+    RouterModule.forRoot( appRoutes, { enableTracing: false } )
   ],
   providers: [],
   bootstrap: [AppComponent]

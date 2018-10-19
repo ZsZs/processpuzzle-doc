@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'doc-main',
+  selector: 'pp-main',
   template: `
     <p>
       processpuzzle-doc works!

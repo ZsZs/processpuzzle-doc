@@ -20,16 +20,23 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/ContentTools/build/images/",
+                "output": "./assets/"
+              }
             ],
             "styles": [
               "src/styles.css",
-              "./node_modules/materialize-css/dist/css/materialize.css"
+              "./node_modules/materialize-css/dist/css/materialize.min.css",
+              "./node_modules/ContentTools/build/content-tools.min.css"
             ],
             "scripts": [
               "./node_modules/hammerjs/hammer.js",
               "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/materialize-css/dist/js/materialize.js"
+              "./node_modules/materialize-css/dist/js/materialize.min.js",
+              "./node_modules/ContentTools/build/content-tools.js"
             ]
           },
           "configurations": {
@@ -93,18 +100,25 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "src/styles.css",
-              "node_modules/materialize-css/dist/css/materialize.css"
-            ],
-            "scripts": [
-              "node_modules/hammerjs/hammer.js",
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/materialize-css/dist/js/materialize.js"
-            ],
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/ContentTools/build/images/",
+                "output": "./assets/"
+              }
+            ],
+            "styles": [
+              "src/styles.css",
+              "./node_modules/materialize-css/dist/css/materialize.css",
+              "./node_modules/ContentTools/build/content-tools.min.css"
+            ],
+            "scripts": [
+              "./node_modules/hammerjs/hammer.js",
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/materialize-css/dist/js/materialize.js",
+              "./node_modules/ContentTools/build/content-tools.js"
             ]
           }
         },
@@ -153,7 +167,7 @@
       "root": "projects/processpuzzle-doc-lib",
       "sourceRoot": "projects/processpuzzle-doc-lib/src",
       "projectType": "library",
-      "prefix": "doc",
+      "prefix": "pp",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
