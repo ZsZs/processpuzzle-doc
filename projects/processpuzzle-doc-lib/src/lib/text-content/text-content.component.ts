@@ -2,14 +2,12 @@ import { AfterViewInit, Component, EventEmitter, OnDestroy, OnInit, Output } fro
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { ContentEditor } from './content-editor';
-import { ContentModule } from './content.module';
-import { ContentActions } from './content-actions';
-import { SmartDocumentService } from './smart-document.service';
-import { SmartDocument } from './smart-document';
+import { ContentActions } from '../generic-content/content-actions';
+import { TextContent } from './text-content';
+import { TextContentEditor } from './text-content-editor';
 
 @Component({
-   selector: 'pp-smart-document',
+   selector: 'pp-text-content',
    template: `
      <div>
        <div data-editable data-name="main-content">
@@ -28,13 +26,12 @@ import { SmartDocument } from './smart-document';
      </div>
      -->
    `,
-   providers: [ContentEditor]
+   providers: []
 })
 
-export class SmartDocumentComponent implements OnDestroy, OnInit {
-   document: SmartDocument;
+export class TextContentComponent implements OnDestroy, OnInit {
+   document: TextContent;
    documentName: string;
-   extraModules = [ContentModule];
    extraTemplate = `
    <div data-editable data-name="main-content">
        <blockquote>
@@ -46,7 +43,7 @@ export class SmartDocumentComponent implements OnDestroy, OnInit {
    isVisible: boolean;
    routeSubscription: Subscription;
 
-   constructor( private contentEditor: ContentEditor, private route: ActivatedRoute, private documentService: SmartDocumentService ) {
+   constructor( private contentEditor: TextContentEditor, private route: ActivatedRoute ) {
    }
 
   // public accessors and mutators
@@ -58,7 +55,7 @@ export class SmartDocumentComponent implements OnDestroy, OnInit {
     this.contentEditor.initialize();
     this.contentEditor.watchContentChange().subscribe(
       (content: string) => {
-//            this.saveContent(content);
+//            this.saveContent(generic-content);
       }
     );
   }
@@ -66,7 +63,7 @@ export class SmartDocumentComponent implements OnDestroy, OnInit {
 
   // event handling methods
    onContentChanged( content: string) {
-//      this.saveContent(content);
+//      this.saveContent(generic-content);
    }
 
    ngOnDestroy() {
@@ -92,22 +89,22 @@ export class SmartDocumentComponent implements OnDestroy, OnInit {
 
    private loadContent( url: string ): void {
       this.documentName = url;
-      this.documentService.loadDocument(this.documentName).subscribe(
-         (response) => {
-            this.document = response;
-            const templateContent = this.document.template;
-            this.extraTemplate = `<div data-editable data-name="${this.documentName}">${templateContent}</div>`;
-         }
-      );
+      // this.documentService.loadDocument(this.documentName).subscribe(
+      //    (response) => {
+      //       this.document = response;
+      //       const templateContent = this.document.template;
+      //       this.extraTemplate = `<div data-editable data-name="${this.documentName}">${templateContent}</div>`;
+      //    }
+      // );
    }
 
    private saveContent(content: string) {
       this.document.updateContent(content);
-      this.documentService.saveDocument(this.document).subscribe(
-         ( response ) => {
-            this.document.id = response.id;
-         }
-      );
+      // this.documentService.saveDocument(this.document).subscribe(
+      //    ( response ) => {
+      //       this.document.id = response.id;
+      //    }
+      // );
    }
 
    private subscribeToDesktopChange() {

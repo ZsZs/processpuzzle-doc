@@ -4,10 +4,10 @@ import {Observable, Subject} from 'rxjs';
 // const contentTools  = require( 'ContentTools' );
 import * as contentTools from 'ContentTools';
 declare let ContentTools: any;
-export let contentEditor: ContentEditor;
+export let textContentEditor: TextContentEditor;
 
 @Injectable()
-export class ContentEditor {
+export class TextContentEditor {
    private contentChangeSource = new Subject<string>();
    private editor = contentTools.EditorApp.get();
 
@@ -23,7 +23,7 @@ export class ContentEditor {
    }
 
    public initialize() {
-      contentEditor = this;
+      textContentEditor = this;
 
       this.addStyles();
       this.editor.init('*[data-editable]', 'data-name');
@@ -50,8 +50,8 @@ export class ContentEditor {
          }
       }
 
-      // Send the update content to the server to be saved
-      contentEditor.announceContentChanged( content );
+      // Send the update generic-content to the server to be saved
+      textContentEditor.announceContentChanged( content );
       this.editor.busy( false );
       const flashUI = new ContentTools.FlashUI('ok');
    }

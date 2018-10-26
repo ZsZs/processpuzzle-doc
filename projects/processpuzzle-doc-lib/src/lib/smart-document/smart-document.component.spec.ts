@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProcesspuzzleDocComponent } from './processpuzzle-doc-lib.component';
+import { SmartDocumentComponent } from './smart-document.component';
 
-describe('ProcesspuzzleDocComponent', () => {
-  let component: ProcesspuzzleDocComponent;
-  let fixture: ComponentFixture<ProcesspuzzleDocComponent>;
+describe('SmartDocumentComponent', () => {
+  let component: SmartDocumentComponent;
+  let fixture: ComponentFixture<SmartDocumentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProcesspuzzleDocComponent ]
+      declarations: [ SmartDocumentComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProcesspuzzleDocComponent);
+    fixture = TestBed.createComponent(SmartDocumentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

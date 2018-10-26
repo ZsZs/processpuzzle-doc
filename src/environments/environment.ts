@@ -16,6 +16,15 @@ export const environment = {
     host: 'localhost:8124',
     contextPath: 'server/api',
     resourcePath: 'documents'
+  },
+
+  firebase: {
+    apiKey: 'AIzaSyBR_Bg6lamduAeBzo54rADckmTvTXplryY',
+    authDomain: 'processpuzzle-doc.firebaseapp.com',
+    databaseURL: 'https://processpuzzle-doc.firebaseio.com',
+    projectId: 'processpuzzle-doc',
+    storageBucket: 'processpuzzle-doc.appspot.com',
+    messagingSenderId: '262894197955'
   }
 };
 

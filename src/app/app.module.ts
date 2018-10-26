@@ -5,17 +5,19 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // Third party components
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireModule } from 'angularfire2';
 import { MzIconModule, MzIconMdiModule } from 'ngx-materialize';
 
 // ProcessPuzzle components
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home.component';
-import { ProcesspuzzleDocModule } from '../../projects/processpuzzle-doc-lib/src/lib/processpuzzle-doc-lib.module';
-import { ProcesspuzzleUtilLibModule } from 'processpuzzle-util';
-import { RemoteApiConfiguration } from 'processpuzzle-util';
+import { ProcesspuzzleDocModule } from '../../projects/processpuzzle-doc-lib/src/lib/processpuzzle-doc.module';
+import { ProcesspuzzleUtilModule, RemoteApiConfiguration } from 'processpuzzle-util';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { SmartDocumentTestbedComponent } from './smart-document-testbed/smart-document-testbed.component';
+import { SmartDocumentService } from '../../projects/processpuzzle-doc-lib/src/lib/smart-document/smart-document.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -38,12 +40,14 @@ const apiConfiguration: RemoteApiConfiguration = {
     SmartDocumentTestbedComponent
   ],
   imports: [
+    AngularFireModule.initializeApp( environment.firebase ),
+    AngularFirestoreModule,
     BrowserAnimationsModule,
     BrowserModule,
     MzIconModule,
     MzIconMdiModule,
     ProcesspuzzleDocModule,
-    ProcesspuzzleUtilLibModule.forRoot( apiConfiguration ),
+    ProcesspuzzleUtilModule.forRoot( environment ),
     RouterModule.forRoot( appRoutes, { enableTracing: false } )
   ],
   providers: [],

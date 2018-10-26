@@ -1,4 +1,4 @@
-export class SmartDocument {
+export class TextContent {
    id: number;
    template = `<h1>Loaded dynamically!</h1>`;
 

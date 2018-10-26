@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'pp-main',
+  selector: 'pp-content',
   template: `
     <p>
-      processpuzzle-doc works!
+      content works!
     </p>
   `,
   styles: []
 })
-export class ProcesspuzzleDocComponent implements OnInit {
+
+export class ContentComponent implements OnInit {
 
   constructor() { }
 
