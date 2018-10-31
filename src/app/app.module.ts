@@ -11,8 +11,8 @@ import { MzButtonModule, MzIconModule, MzIconMdiModule } from 'ngx-materialize';
 
 // ProcessPuzzle components
 import { AppComponent } from './app.component';
-import { APP_ROUTES } from '@app/app-routing.module';
-import { environment } from '../environments/environment';
+import { AppRoutingModule } from '@app/app-routing.module';
+import { environment } from '@env/environment';
 import { HomeComponent } from './home.component';
 import { ProcesspuzzleDocModule } from 'processpuzzle-doc';
 import { ProcesspuzzleUtilModule, RemoteApiConfiguration } from 'processpuzzle-util';
@@ -31,14 +31,14 @@ import { SmartDocumentManagerTestbedComponent } from './smart-document-manager-t
   imports: [
     AngularFireModule.initializeApp( environment.firebase ),
     AngularFirestoreModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
     MzButtonModule,
     MzIconModule,
     MzIconMdiModule,
     ProcesspuzzleDocModule,
-    ProcesspuzzleUtilModule.forRoot( environment ),
-    RouterModule.forRoot( APP_ROUTES, { enableTracing: true } )
+    ProcesspuzzleUtilModule.forRoot( environment )
   ],
   providers: [],
   bootstrap: [AppComponent]

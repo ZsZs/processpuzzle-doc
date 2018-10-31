@@ -24,8 +24,8 @@ import { TextContentEditor } from './text-content/text-content-editor';
   ],
   imports: [
     CommonModule,
-    ProcesspuzzleUtilModule,
-    RouterModule
+    ProcesspuzzleDocRoutingModule,
+    ProcesspuzzleUtilModule
   ],
   exports: [
     SmartDocumentComponent

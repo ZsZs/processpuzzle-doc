@@ -3,13 +3,21 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { SmartDocumentComponent} from './smart-document/smart-document.component';
 
-const routes: Routes = [
-  { path: '', component: SmartDocumentComponent }
+const documentRoutes: Routes = [
+  { path: 'content',
+    children: [
+      { path: ':id', component: SmartDocumentComponent }
+    ],
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forChild( documentRoutes )
+  ],
+  exports: [
+    RouterModule
+  ]
 })
 
 export class ProcesspuzzleDocRoutingModule { }
