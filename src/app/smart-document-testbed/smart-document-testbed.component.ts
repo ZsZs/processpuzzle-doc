@@ -1,5 +1,7 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {SmartDocumentComponent} from 'processpuzzle-doc';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
+
+import { SmartDocumentComponent } from 'processpuzzle-doc';
 
 @Component({
   selector: 'pp-smart-document-testbed',
@@ -9,27 +11,38 @@ import {SmartDocumentComponent} from 'processpuzzle-doc';
   `]
 })
 export class SmartDocumentTestbedComponent implements AfterViewInit, OnInit {
-  @ViewChild( 'smart_document' ) private smartDocumentComponent: SmartDocumentComponent;
+  private smartDocumentComponent: SmartDocumentComponent;
   isEdited = false;
+  isLoaded = false;
 
-  constructor() { }
+  constructor() {}
 
   // event handling methods
-  ngAfterViewInit() {
-
+  public ngAfterViewInit() {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
-  onCancelEdit() {
+  public onCancelEdit() {
     this.smartDocumentComponent.cancelEdit();
     this.isEdited = false;
   }
 
-  onEditContent() {
+  public onEditContent() {
     this.smartDocumentComponent.editContent();
     this.isEdited = true;
+  }
+
+  public onDocumentActivate( componentReference: any ) {
+    this.smartDocumentComponent = componentReference;
+    this.isLoaded = true;
+  }
+
+  public onDocumentDeActivate( componentReference: any ) {
+    this.smartDocumentComponent.cancelEdit();
+    this.smartDocumentComponent = null;
+    this.isLoaded = false;
   }
 
   // properties

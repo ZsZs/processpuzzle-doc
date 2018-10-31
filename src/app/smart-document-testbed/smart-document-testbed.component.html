@@ -1,9 +1,13 @@
-<h5>Testbed for TextContent</h5>
-<p>Smart document is a container of various content types, like text, image, form, diagram, spreadsheet. Each of these type of contents hat it's own editor. Please click on the pencil icon to start editing the document.</p>
-<pp-smart-document #smart_document></pp-smart-document>
-<div class="fixed-action-btn horizontal">
+<h5>Smart Document - Testbed and Documentation</h5>
+<p>Smart document is a container of various content types, like text, image, form, diagram, spreadsheet. Each of these type of contents hat it's own editor.</p>
+<p>You can choose one of the sample document by clicking on the button.</p>
+<a mz-button routerLink='content/1' routerLinkActive='active'>Document #1</a>
+<a mz-button routerLink='content/2' routerLinkActive='active'>Document #2</a>
+<p>Please click on the pencil icon to start editing the document.</p>
+<div class="fixed-action-btn horizontal"  *ngIf="isLoaded">
   <a class="btn-floating btn teal">
     <i (click)="onEditContent()" class="large material-icons" *ngIf="!isEdited">mode_edit</i>
     <i (click)="onCancelEdit()" class="large material-icons" *ngIf="isEdited">exit_to_app</i>
   </a>
 </div>
+<router-outlet (activate)="onDocumentActivate($event)" (deactivate)="onDocumentDeActivate($event)"></router-outlet>
