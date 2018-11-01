@@ -4,6 +4,10 @@ import { from, of } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 
 import { SmartDocumentComponent } from './smart-document.component';
+import {CommonModule} from '@angular/common';
+import {MzProgressModule} from 'ngx-materialize';
+import {ProcesspuzzleDocRoutingModule} from '../processpuzzle-doc-routing.module';
+import {ProcesspuzzleUtilModule} from 'processpuzzle-util';
 
 describe('SmartDocumentComponent', () => {
   const smartDocuments: Object[] = [
@@ -33,6 +37,9 @@ describe('SmartDocumentComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SmartDocumentComponent ],
+      imports: [
+        MzProgressModule
+      ],
       providers: [
         { provide: ActivatedRoute, useValue: { params: of({ id: 123 })}},
         { provide: AngularFirestore, useValue: angularFiresotreStub }
