@@ -23,8 +23,7 @@ export class SmartDocumentService {
   }
 
   public findDocumentById( documentId: string ): Observable<SmartDocument> {
-//    return this.documentsRef.doc( documentId ).get();
-    return null;
+    return this.documentsRef.doc<SmartDocument>( documentId ).valueChanges();
   }
 
   public findDocumentByName( documentName: string ): Observable<SmartDocument[]> {

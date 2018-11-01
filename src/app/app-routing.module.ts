@@ -7,15 +7,18 @@ import { SmartDocumentManagerTestbedComponent } from '@app/smart-document-manage
 import { PageNotFoundComponent } from '@app/page-not-found.component';
 
 export const APP_ROUTES: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'smart-document-manager-testbed', component: SmartDocumentManagerTestbedComponent },
-  { path: 'smart-document-testbed', component: SmartDocumentTestbedComponent },
+  { path: 'smart-document-testbed', component: SmartDocumentTestbedComponent,
+    children: [
+      { path: 'content/:id', component: SmartDocumentComponent }
+    ]},
   { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot( APP_ROUTES, { enableTracing: false } )
+    RouterModule.forRoot( APP_ROUTES, { enableTracing: true } )
   ],
   exports: [RouterModule],
   providers: []

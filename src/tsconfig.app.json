@@ -5,6 +5,13 @@
     "module": "es2015",
     "types": []
   },
+//  "files": [
+//    "../dist/processpuzzle-doc-lib/processpuzzle-doc.d.ts"
+//  ],
+//  "include": [
+//    "../src/main.ts",
+//    "../src/polyfills.ts"
+//  ],
   "exclude": [
     "src/test.ts",
     "**/*.spec.ts"

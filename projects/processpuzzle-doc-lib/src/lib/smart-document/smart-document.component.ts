@@ -1,6 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params} from '@angular/router';
 import { Subscription } from 'rxjs';
+
+import { ObjectUtil } from 'processpuzzle-util';
 
 import { SmartDocumentService } from './smart-document.service';
 import { SmartDocument } from './smart-document';
@@ -8,10 +10,13 @@ import { SmartDocument } from './smart-document';
 @Component({
   selector: 'pp-smart-document',
   template: `
-    <h1>{{documentId}}</h1>
-    <p>
-      smart-document works!
-    </p>
+    <div *ngIf="document==undefined">
+      <mz-progress [backgroundClass]="'blue lighten-4'" [progressClass]="'blue'" *ngIf="document==undefined"></mz-progress>
+      <h5>{{documentId}} is loading...</h5>
+    </div>
+    <div *ngIf="document!=undefined">
+      <h5>{{document.title}}</h5>
+    </div>
   `,
   styles: []
 })
@@ -21,7 +26,7 @@ export class SmartDocumentComponent implements OnDestroy, OnInit {
   document: SmartDocument;
   private uriParametersSubsciption: Subscription;
 
-  constructor( private route: ActivatedRoute, documentService: SmartDocumentService ) { }
+  constructor( private route: ActivatedRoute, private documentService: SmartDocumentService ) { }
 
   // event handling methods
   ngOnDestroy() {
@@ -31,6 +36,8 @@ export class SmartDocumentComponent implements OnDestroy, OnInit {
   ngOnInit() {
     this.uriParametersSubsciption = this.route.params.subscribe( (params: Params) => {
       this.documentId = params['id'];
+      this.document = undefined;
+      this.retrieveDocument();
     });
   }
 
@@ -38,6 +45,15 @@ export class SmartDocumentComponent implements OnDestroy, OnInit {
   public cancelEdit() {}
 
   public editContent() {}
+
+  // private helper methods
+  private retrieveDocument() {
+    this.documentService.findDocumentById( this.documentId ).subscribe( document => {
+      if ( !ObjectUtil.isNullOrUndefined( document )) {
+        this.document = document;
+      }
+    });
+  }
 
   // properties
 }

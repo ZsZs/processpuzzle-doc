@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 // Third party components
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireModule } from 'angularfire2';
-import { MzButtonModule, MzIconModule, MzIconMdiModule } from 'ngx-materialize';
+import { MzButtonModule, MzIconModule, MzIconMdiModule, MzProgressModule } from 'ngx-materialize';
 
 // ProcessPuzzle components
 import { AppComponent } from './app.component';
@@ -31,14 +31,15 @@ import { SmartDocumentManagerTestbedComponent } from './smart-document-manager-t
   imports: [
     AngularFireModule.initializeApp( environment.firebase ),
     AngularFirestoreModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
     MzButtonModule,
     MzIconModule,
+    MzProgressModule,
     MzIconMdiModule,
     ProcesspuzzleDocModule,
-    ProcesspuzzleUtilModule.forRoot( environment )
+    ProcesspuzzleUtilModule.forRoot( environment ),
+    AppRoutingModule        // It's important to import AppRoutingModule after any other feature routing module.
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SmartDocumentComponent} from './smart-document/smart-document.component';
 
 const documentRoutes: Routes = [
-  { path: 'content',
+  { path: 'content', outlet: 'smartDocument',
     children: [
       { path: ':id', component: SmartDocumentComponent }
     ],
