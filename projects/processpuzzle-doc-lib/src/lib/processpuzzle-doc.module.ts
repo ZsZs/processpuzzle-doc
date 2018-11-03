@@ -23,8 +23,8 @@ import { SmartDocumentToolComponent } from './smart-document/smart-document-tool
   declarations: [
     ContentComponent,
     SmartDocumentComponent,
-    TextContentComponent,
-    SmartDocumentToolComponent
+    SmartDocumentToolComponent,
+    TextContentComponent
   ],
   imports: [
     CommonModule,

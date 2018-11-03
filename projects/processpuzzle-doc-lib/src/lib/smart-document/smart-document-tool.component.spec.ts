@@ -9,12 +9,11 @@ describe('SmartDocumentToolComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SmartDocumentToolComponent ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SmartDocumentToolComponent);
+    fixture = TestBed.createComponent( SmartDocumentToolComponent );
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
