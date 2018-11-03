@@ -2,12 +2,12 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 // Third party components
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireModule } from 'angularfire2';
-import { MzButtonModule, MzIconModule, MzIconMdiModule, MzProgressModule } from 'ngx-materialize';
+import {MzButtonModule, MzIconModule, MzIconMdiModule, MzProgressModule, MzSelectModule, MzInputModule, MzCheckboxModule} from 'ngx-materialize';
 
 // ProcessPuzzle components
 import { AppComponent } from './app.component';
@@ -19,6 +19,7 @@ import { ProcesspuzzleUtilModule, RemoteApiConfiguration } from 'processpuzzle-u
 import { PageNotFoundComponent } from './page-not-found.component';
 import { SmartDocumentTestbedComponent } from './smart-document-testbed/smart-document-testbed.component';
 import { SmartDocumentManagerTestbedComponent } from './smart-document-manager-testbed/smart-document-manager-testbed.component';
+import { SmartDocumentToolTestbedComponent } from './smart-document-tool-testbed/smart-document-tool-testbed.component';
 
 @NgModule({
   declarations: [
@@ -26,17 +27,22 @@ import { SmartDocumentManagerTestbedComponent } from './smart-document-manager-t
     HomeComponent,
     PageNotFoundComponent,
     SmartDocumentTestbedComponent,
-    SmartDocumentManagerTestbedComponent
+    SmartDocumentManagerTestbedComponent,
+    SmartDocumentToolTestbedComponent
   ],
   imports: [
     AngularFireModule.initializeApp( environment.firebase ),
     AngularFirestoreModule,
     BrowserAnimationsModule,
     BrowserModule,
+    FormsModule,
     MzButtonModule,
-    MzIconModule,
-    MzProgressModule,
+    MzCheckboxModule,
     MzIconMdiModule,
+    MzIconModule,
+    MzInputModule,
+    MzProgressModule,
+    MzSelectModule,
     ProcesspuzzleDocModule,
     ProcesspuzzleUtilModule.forRoot( environment ),
     AppRoutingModule        // It's important to import AppRoutingModule after any other feature routing module.
