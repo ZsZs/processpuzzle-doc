@@ -7,6 +7,9 @@ import { SmartDocumentComponent } from 'processpuzzle-doc';
   selector: 'pp-smart-document-testbed',
   templateUrl: './smart-document-testbed.component.html',
   styles: [`
+    .toolbar-spacer {
+      flex: 1 1 auto;
+    }
     .document-frame { border: 7px blue; }
   `]
 })

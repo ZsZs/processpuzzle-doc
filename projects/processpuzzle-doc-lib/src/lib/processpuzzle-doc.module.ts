@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { MatButtonModule, MatProgressBarModule, MatToolbarModule } from '@angular/material';
 
 // Third party components
 import { AngularFireModule } from 'angularfire2';
@@ -29,8 +30,9 @@ import { SmartDocumentToolComponent } from './smart-document/smart-document-tool
   imports: [
     CommonModule,
     FormsModule,
-    MzProgressModule,
-    MzSelectModule,
+    MatButtonModule,
+    MatProgressBarModule,
+    MatToolbarModule,
     ProcesspuzzleDocRoutingModule,
     ProcesspuzzleUtilModule
   ],

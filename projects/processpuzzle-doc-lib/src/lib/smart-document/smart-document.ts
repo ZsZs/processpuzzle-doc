@@ -1,11 +1,13 @@
+import {JsonProperty} from 'json2typescript';
+
 import {Content} from '../generic-content/content';
 
 export class SmartDocument {
-  private _application: string;
-  private _id: string;
-  private _contents: Content[];
-  private _name: string;
-  private _title: string;
+  @JsonProperty( 'application', String ) private _application: string | undefined = undefined;
+  @JsonProperty( 'id', String ) private _id: string | undefined = undefined;
+  @JsonProperty( 'contents', [Content], false ) private _contents: Content[] = [];
+  @JsonProperty( 'name', String ) private _name: string | undefined = undefined;
+  @JsonProperty( 'title', String ) private _title: string | undefined = undefined;
 
   constructor( application: string ) {
     this._application = application;
@@ -30,6 +32,7 @@ export class SmartDocument {
   get name(): string { return this._name; }
   get title(): string { return this._title; }
   set application( application: string ) { this._application = application; }
+  set id( id: string ) { this._id = id; }
   set name( name: string ) { this._name = name; }
   set title( title: string ) { this._title = title; }
   // @formatter:on

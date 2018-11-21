@@ -2,58 +2,71 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { from, of } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { MatProgressBarModule } from '@angular/material';
 
 import { SmartDocumentComponent } from './smart-document.component';
-import {CommonModule} from '@angular/common';
-import {MzProgressModule} from 'ngx-materialize';
-import {ProcesspuzzleDocRoutingModule} from '../processpuzzle-doc-routing.module';
-import {ProcesspuzzleUtilModule} from 'processpuzzle-util';
+import { CommonModule } from '@angular/common';
+import { ProcesspuzzleDocRoutingModule} from '../processpuzzle-doc-routing.module';
+import { JsonMapper, ProcesspuzzleUtilModule} from 'processpuzzle-util';
+import { SmartDocument } from './smart-document';
+
 
 describe('SmartDocumentComponent', () => {
-  const smartDocuments: Object[] = [
-    { _application: 'test-app',
-      _id: '1',
-      _name: 'doc1',
-      _contents: [{ id: '1', _contentComponent: '', _contentValue: '<h1>Hello</h1>'}],
-      _title: 'Document One'
-    },
-    { _application: 'test-app', _id: '2', _name: 'doc2', _contents: [], _title: 'Document Two' },
-    { _application: 'test-app', _id: '3', _name: 'doc3', _contents: [], _title: 'Document Three' }
-  ];
-
-  const data = from( smartDocuments );
-
-  const collectionStub = {
-    valueChanges: jasmine.createSpy('valueChanges').and.returnValue( data )
-  };
-
-  const angularFiresotreStub = {
-    collection: jasmine.createSpy('collection').and.returnValue( collectionStub )
-  };
-
+  let jsonMapper: JsonMapper;
+  let angularFiresotreStub = {};
   let component: SmartDocumentComponent;
   let fixture: ComponentFixture<SmartDocumentComponent>;
+  let smartDocuments: SmartDocument[];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SmartDocumentComponent ],
       imports: [
-        MzProgressModule
+        CommonModule,
+        MatProgressBarModule
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: { params: of({ id: 123 })}},
+        JsonMapper,
+        { provide: ActivatedRoute, useValue: { params: of({ id: 1 })}},
         { provide: AngularFirestore, useValue: angularFiresotreStub }
       ]
     }).compileComponents();
+
+    jsonMapper = TestBed.get( JsonMapper );
   }));
 
   beforeEach(() => {
+    const documentObjects: Object[] = [
+      { application: 'test-app',
+        id: '1',
+        name: 'doc1',
+        contents: [{ id: '1', contentComponent: '', contentValue: '<h1>Hello</h1>'}],
+        title: 'Document One'
+      },
+      { application: 'test-app', id: '2', name: 'doc2', contents: [], title: 'Document Two' },
+      { application: 'test-app', id: '3', name: 'doc3', contents: [], title: 'Document Three' }
+    ];
+
+    smartDocuments = (jsonMapper as any).deserializeArray( documentObjects );
+    const testData = from( smartDocuments );
+    const collectionStub = {
+      valueChanges: jasmine.createSpy('valueChanges').and.returnValue( testData )
+    };
+    angularFiresotreStub = {
+      collection: jasmine.createSpy('collection').and.returnValue( collectionStub )
+    };
+
     fixture = TestBed.createComponent(SmartDocumentComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('onInit() retrieves document', () => {
+    expect( component.document ).toEqual( smartDocuments[0] );
   });
 });

@@ -9,14 +9,14 @@ import {Content} from '../generic-content/content';
 
 describe('SmartDocumentService', () => {
   const smartDocuments: Object[] = [
-    { _application: 'test-app',
-      _id: '1',
-      _name: 'doc1',
-      _contents: [{ id: '1', _contentComponent: '', _contentValue: '<h1>Hello</h1>'}],
-      _title: 'Document One'
+    { application: 'test-app',
+      id: '1',
+      name: 'doc1',
+      contents: [{ id: '1', contentComponent: '', contentValue: '<h1>Hello</h1>'}],
+      title: 'Document One'
     },
-    { _application: 'test-app', _id: '2', _name: 'doc2', _contents: [], _title: 'Document Two' },
-    { _application: 'test-app', _id: '3', _name: 'doc3', _contents: [], _title: 'Document Three' }
+    { application: 'test-app', id: '2', name: 'doc2', contents: [], title: 'Document Two' },
+    { application: 'test-app', id: '3', name: 'doc3', contents: [], title: 'Document Three' }
   ];
 
   const data = from( smartDocuments );

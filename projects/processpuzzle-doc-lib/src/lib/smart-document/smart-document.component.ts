@@ -11,7 +11,7 @@ import { SmartDocument } from './smart-document';
   selector: 'pp-smart-document',
   template: `
     <div *ngIf="document==undefined">
-      <mz-progress [backgroundClass]="'blue lighten-4'" [progressClass]="'blue'" *ngIf="document==undefined"></mz-progress>
+      <mat-progress-bar mode="query"></mat-progress-bar>
       <h5>{{documentId}} is loading...</h5>
     </div>
     <div *ngIf="document!=undefined">

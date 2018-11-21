@@ -28,14 +28,12 @@
               }
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
-              "./node_modules/materialize-css/dist/css/materialize.min.css",
               "./node_modules/ContentTools/build/content-tools.min.css"
             ],
             "scripts": [
               "./node_modules/hammerjs/hammer.js",
-              "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/materialize-css/dist/js/materialize.min.js",
               "./node_modules/ContentTools/build/content-tools.js"
             ]
           },
@@ -110,14 +108,12 @@
               }
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
-              "./node_modules/materialize-css/dist/css/materialize.css",
               "./node_modules/ContentTools/build/content-tools.min.css"
             ],
             "scripts": [
               "./node_modules/hammerjs/hammer.js",
-              "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/materialize-css/dist/js/materialize.js",
               "./node_modules/ContentTools/build/content-tools.js"
             ]
           }
@@ -201,7 +197,6 @@
               ]
             }
           }
-          
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
